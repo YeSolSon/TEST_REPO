@@ -1,0 +1,40 @@
+url 패턴
+
+	. web.xml
+	. @WebServlet("/")
+	. 목적
+	 	- 보안적용
+		- java도 실행가능처리
+		- jsp(html) >> java로 요청처리 기능
+	. Mapping
+		- web.xml
+		- @WebServlet()
+		- @RequestMapping(value="index(서블릿이름)", method="RequestMethod.POST")
+
+	. 패턴문법
+		- ? : 한글자,	* : 여러글자,	** : 하위경로
+
+		- 예) http://localhost:8080/Ch20/member/login.do
+			.@WebServlet("/member/*")	/시작하고 /*끝나는것
+			.@WebServlet("*.do")		*.로 시작하고 do로 끝나는 것(확장자매칭) 확장자가 do인것
+				      /login/hello.do,  /login/hi.do,  hi.do	
+					
+			.@WebServlet("/*")		요청받은 모든 URL해당
+
+
+
+	   	  예) @WebServlet("/login/hello.do")
+				  http://localhost:8080/Ch20/hello.do
+	   	      
+		      @WebServlet("/login/*")
+				   /login/hello,  /login/my.car, /login/hi.do
+		      
+		      @WebServlet("/login/**/tmp/*.do")
+				   /login/tmp/hello.do, /login/abc/tmp/hello.do
+		      
+		      @WebServlet("/login/??")
+				   /login/hi.do, /login/my.car
+
+		      @WebServlet("/*.???")
+				   /hello.pdf,  /hi.txt,  /my.car
+
